@@ -24,7 +24,7 @@ def load_logs(file_path: str) -> list:
 
  
 
-# Розділяємо строку на словник з перевіркою
+# Розділяємо рядок на словник з перевіркою
 def parse_log_line(line: str) -> dict:
     line_split = line.strip().split(' ')
     try:
@@ -42,7 +42,7 @@ def parse_log_line(line: str) -> dict:
     except ValueError:
         pass
 
-# Створюємо словник який рахує кількість різних тепів
+# Створюємо словник який рахує кількість різних типів
 def count_logs_by_level(logs: list) -> dict:
     try:
         return Counter(log["Type"] for log in logs)
@@ -74,7 +74,7 @@ def display_log_counts(counts: dict):
 def filter_logs_by_level(logs: list, level: str) -> list:
 
     log = [key for key in logs if key["Type"].upper() == level]
-    # Перевіряємо чи введени лог правильний. Якщо ні то log пустий 
+    # Перевіряємо чи введений лог правильно. Якщо ні то log пустий 
     if any(log):
         print(f"Деталі логів для рівня {level}:")
         for i in log:
