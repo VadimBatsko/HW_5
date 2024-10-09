@@ -45,7 +45,8 @@ def parse_log_line(line: str) -> dict:
 # Створюємо словник який рахує кількість різних типів
 def count_logs_by_level(logs: list) -> dict:
     try:
-        return Counter(log["Type"] for log in logs)
+
+        return dict(Counter(log["Type"] for log in logs))
     except TypeError:
         return "Невірний шлях"
 

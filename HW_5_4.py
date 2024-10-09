@@ -51,8 +51,10 @@ def show_phone(args, contacts):
 # Вивід всіх контактів
 
 def all(contacts):
+    list = ''
     for i,k in contacts.items():
-        print(f"Name: {i} number: {k}")
+        list += f"Name: {i} number: {k}\n"
+    return list
     
 
 
@@ -76,7 +78,7 @@ def main():
         elif command == "phone":
             print(show_phone(args, contacts))
         elif command == "all":
-            all(contacts)
+            print(all(contacts))
         else:
             print("Invalid command.")
 
