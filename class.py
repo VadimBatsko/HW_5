@@ -9,16 +9,24 @@ class Field:
 
 class Name(Field):
     def __init__(self, value):
+        if len(value) <= 1:
+            raise ValueError("Ім'я не може бути менше 1 букви")
         super().__init__(value)
-        assert len(value) > 1, "Ім'я надто коротке"
-        self.value = value
+        
+        
+            
+        
+        
 
 class Phone(Field):
     def __init__(self, value):
+        if len(value) != 10:
+            raise ValueError("Невірна довжина номера")
+        elif not value.isdigit():
+            raise ValueError('Введіть лише цифри')
         super().__init__(value)
-        assert len(value) >= 10, 'Номер телефону надто короткий'
-        assert value.isdigit(), 'Введіть лише цифри'
-        self.value = value
+
+        
         
 
 class Record:
@@ -32,16 +40,17 @@ class Record:
     def find_phone(self,user_phone):
         for phone in self.phones:
             if phone.value == user_phone:
-                return phone.value
+                return phone
 
     def edit_phone(self,old_phone, new_phone):
+        
         for phone in self.phones:  
             if phone.value == old_phone:
                 self.phones.remove(phone)
                 self.phones.append(Phone(new_phone))
-                break
-            else:
-                raise ValueError
+                return
+        raise ValueError('Відсутній телефон')
+                
             
     def remove_phone(self,remove):
         for phone in self.phones:  
@@ -96,7 +105,7 @@ john.edit_phone("1234567890", "1112223333")
 print(john)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
 
     # Пошук конкретного телефону у записі John
-found_phone = john.find_phone("555555a5555")
+found_phone = john.find_phone("5555555555")
 print(f"{john.name}: {found_phone}")  # Виведення: John: 5555555555
 
     # Видалення запису Jane
