@@ -46,8 +46,8 @@ class Record:
         
         for phone in self.phones:  
             if phone.value == old_phone:
-                self.phones.remove(phone)
                 self.phones.append(Phone(new_phone))
+                self.phones.remove(phone)
                 return
         raise ValueError('Відсутній телефон')
                 
@@ -98,15 +98,15 @@ print(book)
 
     # Знаходження та редагування телефону для John
 john = book.find("John")
-john.edit_phone("1234567890", "1112223333")
+john.edit_phone("1234567890", "11122й23333")
 # john.remove_phone("1112223333")
 
 
-print(john)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
+print(john.__dict__)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
 
-    # Пошук конкретного телефону у записі John
-found_phone = john.find_phone("5555555555")
-print(f"{john.name}: {found_phone}")  # Виведення: John: 5555555555
+#     # Пошук конкретного телефону у записі John
+# found_phone = john.find_phone("5555555555")
+# print(f"{john.name}: {found_phone}")  # Виведення: John: 5555555555
 
-    # Видалення запису Jane
-book.delete("Jane")
+#     # Видалення запису Jane
+# book.delete("Jane")
